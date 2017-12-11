@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <vector>
 #include <ctime>
+#include <random>       // std::rand
 #include <algorithm>    // std::random_shuffle
 
 #include <mpi.h>
@@ -43,12 +44,14 @@ int main(int argc, char *argv[]){
   t1 = clock();
   // Build Block cyclic data for each proc
   {
+    // Need to find a way to load a matrix to test
     // CReadData readCSV(fileName, *delimiter.c_str());
     // readCSV.readAllLines();
     std::vector<double> mat(Rows*Cols, 0.0e0);
     std::random_shuffle( mat.begin(), mat.end() );
 
     SLSVD.BuildLocalBlockMatrix(mat);
+    SLSVD.PrintLocalMatrix();
     MPI_Barrier(MPI_COMM_WORLD);
   }
   t2 = clock();
