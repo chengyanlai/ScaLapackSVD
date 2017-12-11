@@ -1,0 +1,19 @@
+#!/bin/bash
+#SBATCH --account=s17_cint
+#SBATCH --partition=standard
+#SBATCH --nodes=2
+#SBATCH --ntasks=2
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=16
+#SBATCH --time=16:00:00
+#SBATCH --job-name=scalapack
+#SBATCH --export=all
+export OMP_NUM_THREADS=16
+echo ----------------------------------------------
+echo "Job started on" `date`
+echo ----------------------------------------------
+mpirun -n 2 -ppn 1 /users/chengyanlai/scalapack/build/dsvd.mpi
+echo ----------------------------------------------
+echo "Job ended on" `date`
+echo ----------------------------------------------
+exit 0

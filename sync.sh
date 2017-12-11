@@ -4,7 +4,7 @@ if [[ -z "$1" ]]; then
 elif [[ "$1" == "to" ]]; then
   echo "Upload source code to" $2
   if [[ "$2" == "lanl" ]]; then
-    scp -r Makefile src qsub apps lanl:ar-tn.lanl.gov:/usr/projects/cint/cint_sces/tensorlib/apps/
+    scp -r Makefile src apps lanl:ar-tn.lanl.gov:/users/chengyanlai/scalapack
   else
     rsync -avzh \
     --include-from 'code-include.txt' \
